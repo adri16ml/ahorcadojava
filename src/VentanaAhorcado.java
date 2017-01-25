@@ -56,6 +56,39 @@ private void dibujaImagen (int numerofallos){
             
       panelAhorcado.setIcon(miImagen);
             }  
+private void chequeaLetra (String letra){
+        
+        letra = letra.toUpperCase();
+        // string para comprobar la palabra
+        //String palabraconguiones = jLabel1.getText();
+        StringBuilder palabraconguiones = new StringBuilder (jLabel1.getText());
+        if (palabraOculta.contains(letra)){
+        for (int i=0; i<palabraOculta.length(); i++){
+            if (palabraOculta.charAt(i) == letra.charAt(0)){
+          palabraconguiones.setCharAt(2*i, letra.charAt(0));
+            }
+            jLabel1.setText(palabraconguiones.toString());
+        }
+        }
+        else{
+        numeroFallos++;
+        dibujaImagen(numeroFallos);}
+        // ejemplo con string normal no con builder
+          // como los string no se pueden modifiar hay que sumar el mismo string
+                // se coge el mismo desde la posicion 0 y se multiplica 2veces por I
+               // palabraconguiones = palabraconguiones.substring(0, 2*i) 
+                        // continua 
+                       // + letra
+                        // palabraconguiones es un string, y creamos otro a partir del primero,
+                        // va a comprobar hasta que salga la letra y luego repetira el proceso 
+                        // sin contar con la letra que ya ha puesto
+                       // + palabraconguiones.substring(2*i+1);
+                      
+    }
+    private void chequeaBoton( JButton miBoton){
+        miBoton.setEnabled(false);
+        chequeaLetra(miBoton.getText());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -448,42 +481,7 @@ private void dibujaImagen (int numerofallos){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void chequeaLetra (String letra){
-        
-        letra = letra.toUpperCase();
-        // string para comprobar la palabra
-        //String palabraconguiones = jLabel1.getText();
-        StringBuilder palabraconguiones = new StringBuilder (jLabel1.getText());
-        if (palabraOculta.contains(letra)){
-        for (int i=0; i<palabraOculta.length(); i++){
-            if (palabraOculta.charAt(i) == letra.charAt(0)){
-          palabraconguiones.setCharAt(2*i, letra.charAt(0));
-            }
-            jLabel1.setText(palabraconguiones.toString());
-        }
-        }
-        else{
-        numeroFallos++;
-        dibujaImagen(numeroFallos);}
-        // ejemplo con string normal no con builder
-          // como los string no se pueden modifiar hay que sumar el mismo string
-                // se coge el mismo desde la posicion 0 y se multiplica 2veces por I
-               // palabraconguiones = palabraconguiones.substring(0, 2*i) 
-                        // continua 
-                       // + letra
-                        // palabraconguiones es un string, y creamos otro a partir del primero,
-                        // va a comprobar hasta que salga la letra y luego repetira el proceso 
-                        // sin contar con la letra que ya ha puesto
-                       // + palabraconguiones.substring(2*i+1);
-                      
-    }
-    private void chequeaBoton( JButton miBoton){
-        miBoton.setEnabled(false);
-        chequeaLetra(miBoton.getText());
-    }
-        
-    
+ 
     private void AMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AMousePressed
         chequeaBoton( (JButton) evt.getSource()); 
     }//GEN-LAST:event_AMousePressed
